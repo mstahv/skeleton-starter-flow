@@ -28,11 +28,15 @@ import com.vaadin.flow.router.Route;
 @HtmlImport("styles.html")
 @Route("")
 public class MainView extends VerticalLayout {
+    private int timesClicked;
 
     public MainView() {
         ExampleTemplate template = new ExampleTemplate();
 
-        Button button = new Button("Click me", event -> template.setValue("Clicked!"));
+        Button button = new Button("Click me", event -> {
+            timesClicked++;
+            template.setValue(String.format("Server saying: clicked %s times", timesClicked));
+        });
 
         add(button, template);
     }

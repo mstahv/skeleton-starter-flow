@@ -21,6 +21,7 @@
 <dom-module id="example-template">
     <template>
         <span>[[value]]</span>
+        <div>[[evenClicksStatus]]</div>
     </template>
 
     <!-- Polymer boilerplate to register the example-template element -->
@@ -28,6 +29,35 @@
         class ExampleTemplate extends Polymer.Element {
             static get is() {
                 return 'example-template'
+            }
+
+            static get properties() {
+                return {
+                    evenClicksStatus: String,
+                    value: {
+                        type: String,
+                        observer: 'handleValueChange'
+                    },
+                    expectedRegex: {
+                        type: String,
+                        readonly: true,
+                        value: /\s+(\d+)\s+/
+                    }
+                }
+            }
+
+            handleValueChange() {
+                const matches = this.value.match(this.expectedRegex);
+                if (matches && matches[0]) {
+                    const numberOfClicks = parseInt(matches[0]);
+                    if (numberOfClicks % 2 === 0) {
+                        this.evenClicksStatus = 'Client saying: number of clicks is even';
+                    } else {
+                        this.evenClicksStatus = 'Client saying: number of clicks is odd';
+                    }
+                } else {
+                    this.evenClicksStatus = 'Client saying: No clicks are made';
+                }
             }
         }
         customElements.define(ExampleTemplate.is, ExampleTemplate);
