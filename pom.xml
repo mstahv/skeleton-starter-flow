@@ -70,7 +70,13 @@
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
+            <artifactId>flow-server</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.vaadin</groupId>
             <artifactId>vaadin-lumo-theme</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
 
         <!-- Added to provide logging output as Flow uses -->
@@ -138,12 +144,12 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>flow-maven-plugin</artifactId>
-                        <version>1.0.0.alpha18</version>
+                        <version>1.0-SNAPSHOT</version>
                         <executions>
                             <execution>
                                 <goals>
                                     <goal>copy-production-files</goal>
-                                    <goal>transpile-production-files</goal>
+                                    <goal>package-for-production</goal>
                                 </goals>
                                 <configuration>
                                     <transpileOutputDirectory>${transpilation.output}</transpileOutputDirectory>
