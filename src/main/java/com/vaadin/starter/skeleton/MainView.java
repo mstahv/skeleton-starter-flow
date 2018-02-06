@@ -2,6 +2,8 @@ package com.vaadin.starter.skeleton;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
+import com.vaadin.flow.component.dialog.Dialog;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.BodySize;
 import com.vaadin.flow.router.Route;
@@ -18,11 +20,9 @@ import com.vaadin.flow.theme.lumo.Lumo;
 public class MainView extends VerticalLayout {
 
     public MainView() {
-        ExampleTemplate template = new ExampleTemplate();
 
-        Button button = new Button("Click me", event -> template.setValue("Clicked!"));
+        Dialog dialog = new Dialog(new Label("This is in a dialog"));
+        add(dialog, new Button("open dialog", event -> dialog.open()));
 
-        add(button, template);
-        setClassName("main-layout");
     }
 }
